@@ -49,7 +49,6 @@ class Main
      */
     private $_instances;
 
-
     /**
      * Singleton
      * Main constructor.
@@ -107,8 +106,10 @@ class Main
         $this->_instances = array();
 
         $this->_instances['log'] = new Log();
-        if(ENVIRONMENT == self::ENVIRONMENT_DEV)
+        if(ENVIRONMENT == self::ENVIRONMENT_DEV) {
             $this->_instances['debug'] = new Debug();
+            $this->_instances['panel'] = new Panel();
+        }
         $this->_instances['controller'] = null;
         $this->_instances['configuration'] = new Configuration();
         $this->_instances['routing'] = new Routing();

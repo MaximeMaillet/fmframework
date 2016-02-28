@@ -8,7 +8,6 @@
 
 namespace System\Core;
 use \Application\Models;
-use System\Core\Persistence\Database;
 
 class Controller
 {
@@ -20,15 +19,15 @@ class Controller
             Debug::addInstanciation(__CLASS__, get_class($this));
 
         $model_class_name = '\Application\Models\\'.$this->getName();
+        $view_class_name = '\Application\Views\\'.$this->getName();
 
         $this->_instances = array(
             'model' => new $model_class_name(),
+            'view' => new $view_class_name(),
             'library' => new Library(),
             'input' => new Input(),
             'output' => new Output(),
         );
-
-        Log::add("mytext", 'myfile');
     }
 
     private function getName() {
