@@ -1,0 +1,10 @@
+{
+  "database": {
+    "driver": "pdo",
+    "type": "mysql",
+    "host": "localhost",
+    "dbname": "fmdatabase",
+    "dbuser": "api_user",
+    "dbpassword": "21022102"
+  }
+}

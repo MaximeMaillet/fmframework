@@ -1,0 +1,6 @@
+{
+  "routes": [
+    {"/User/isi": "/User/pasla"},
+    {"/User/maitou": "User/maitpasla"}
+  ]
+}
