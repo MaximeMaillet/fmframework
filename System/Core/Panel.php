@@ -3,13 +3,16 @@
  * Created by PhpStorm.
  * User: maxime
  * Date: 28/02/2016
- * Time: 13:06
+ * Time: 15:06
  */
 
-namespace System\Panel;
+namespace System\Core;
 
 
 class Panel
 {
 
+    public function __construct() {
+
+    }
 }
