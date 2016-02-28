@@ -18,10 +18,8 @@ class User extends Model
     }
 
     public function isi() {
-        echo'<pre>';
-        echo'Model:<br>';
         $this->DB()->query('SELECT * FROM fmdatabase')->setFetchMode(\PDO::FETCH_ASSOC);
-        print_r($this->DB()->result());
-        echo'</pre>';
+        $result = $this->DB()->result();
+        return $result[0];
     }
 }

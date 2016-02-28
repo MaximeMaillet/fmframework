@@ -1,0 +1,7 @@
+{
+  "templates":{
+    "json_templates":{
+      "header":"application/json"
+    }
+  }
+}

@@ -10,10 +10,9 @@ class User extends Controller
     }
 
     public function isi() {
-        $this->loadLibrary('Curl');
-        $this->loadLibrary('Curl', 'MyCurl');
-        $this->loadLibrary('Facebook/MyFacebook');
-        $this->getModel()->isi();
+
+        $result = $this->getModel()->isi();
+        $this->view->isi($result);
     }
 
     public function _1_isi() {
