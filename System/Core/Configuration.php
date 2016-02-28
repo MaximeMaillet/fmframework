@@ -18,39 +18,23 @@ class Configuration
     public function __construct() {
         if(Main::getInstance()->isModDebug())
             Debug::addInstanciation(__CLASS__);
+        $this->_items = array();
         $this->loadFiles();
     }
 
     private function loadFiles() {
         foreach(scandir(Main::getInstance()->getConfigurationPath()) as $filename) {
-            if(substr($filename, -4) == 'json')
+            if(substr($filename, -4) == 'json') {
                 $this->loadFile(Main::getInstance()->getConfigurationPath().$filename);
+            }
         }
     }
 
     private function loadFile($configuration_file_path) {
         $contentfile = @file_get_contents($configuration_file_path);
         $contentfile = json_decode($contentfile, true);
-        $this->loadContentFile($contentfile);
-    }
-
-    private function loadContentFile($content, &$parent=null) {
-
-        if(is_array($content)) {
-            foreach($content as $key => $item) {
-
-                // Ajout de la racine
-                if(is_null($parent)) {
-                    $this->_items[$key] = array();
-                    $parent = &$this->_items[$key];
-                }
-
-                if(is_array($item)) {
-                    $this->loadContentFile($item, $parent);
-                }
-                else
-                    $parent[$key] = $item;
-            }
+        if(is_array($contentfile)) {
+            $this->_items[key($contentfile)] = $contentfile[key($contentfile)];
         }
     }
 
