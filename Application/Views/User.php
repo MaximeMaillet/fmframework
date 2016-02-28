@@ -1,7 +1,6 @@
 <?php
 
 namespace Application\Views;
-use System\Core\Debug;
 use System\Core\View;
 
 class User extends View

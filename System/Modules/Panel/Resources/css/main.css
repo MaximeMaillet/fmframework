@@ -1,0 +1,8 @@
+section.panel_bottomBar {
+    position: absolute;
+    bottom: 0px;
+    right: 0px;
+    left: 0px;
+    background-attachment: fixed;
+    background-color: #000000;
+}

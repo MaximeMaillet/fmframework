@@ -17,6 +17,9 @@ class View
     private $_header;
 
     public function __construct() {
+        if(Main::getInstance()->isModDebug())
+            Debug::addInstanciation(__CLASS__, get_class($this));
+
         $this->_resources_path = Main::getInstance()->getAppPath().'Resources'.DIRECTORY_SEPARATOR;
         $this->_header = array(
           'Content-Type' => 'text/html'

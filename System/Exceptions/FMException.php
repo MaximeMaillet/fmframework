@@ -26,6 +26,6 @@ class FMException extends \Exception
 
     public function __toString()
     {
-        return get_class($this).' (ERR::'.$this->getErrorCode().') --> '.$this->getMessage();
+        return get_class($this).' (ERR::'.$this->getErrorCode().') [Line:'.$this->getLine().';File:'.$this->getFile().']--> '.$this->getMessage();
     }
 }

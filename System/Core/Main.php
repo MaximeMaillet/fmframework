@@ -43,6 +43,7 @@ class Main
      * @var string
      */
     private $_logs_path;
+    private $_main_url;
     /**
      * Instance list of working class
      * @var array
@@ -88,6 +89,7 @@ class Main
      * Method which grab all patch for each directory of framework
      */
     private function loadPath() {
+        $this->_main_url = $_SERVER['SERVER_NAME'];
         $this->_system_path = INDEX_DIRECTORY.DIRECTORY_SEPARATOR.'System'.DIRECTORY_SEPARATOR;
         $this->_application_path = INDEX_DIRECTORY.DIRECTORY_SEPARATOR.'Application'.DIRECTORY_SEPARATOR;
         $this->_configuration_path = INDEX_DIRECTORY.DIRECTORY_SEPARATOR.'configuration'.DIRECTORY_SEPARATOR;
@@ -113,6 +115,15 @@ class Main
         $this->_instances['controller'] = null;
         $this->_instances['configuration'] = new Configuration();
         $this->_instances['routing'] = new Routing();
+        $this->_instances['modules'] = array();
+        foreach(scandir(Main::getInstance()->getSystemPath().'Modules') as $filename) {
+            if($filename != '.' && $filename != '..') {
+                $class_name = '\System\Modules\\'.$filename.'\Main';
+                $this->_instances[$filename] = new $class_name();
+                $this->_instances[$filename]->launch();
+            }
+        }
+
     }
 
     /**
@@ -155,8 +166,16 @@ class Main
         return $this->_configuration_path;
     }
 
+    public function getSystemPath() {
+        return $this->_system_path;
+    }
+
     public function getLogsPath() {
         return $this->_logs_path;
+    }
+
+    public function getMainUrl() {
+        return $this->_main_url;
     }
 
     /**
