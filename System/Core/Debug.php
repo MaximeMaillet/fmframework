@@ -40,6 +40,7 @@ class Debug
     }
 
     public static function show() {
+        echo'<p>';
         foreach(self::$_instanciations as $Instance) {
             if(is_array($Instance))
                 echo 'Parent('.$Instance['parent'].') => Child('.$Instance['child'].')<br>';
@@ -47,10 +48,13 @@ class Debug
                 echo $Instance.'<br>';
 
         }
+        echo'</p>';
 
-        echo '<h1>Logs</h1>';
-        foreach (self::$_log as $line) {
-            echo $line.'<br>';
+        if(isset(self::$_log) && !empty(self::$_log)) {
+            echo '<h1>Logs</h1>';
+            foreach (self::$_log as $line) {
+                echo $line.'<br>';
+            }
         }
     }
 }
