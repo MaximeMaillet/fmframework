@@ -24,6 +24,10 @@ class PanelView
         $this->renderFooter();
     }
 
+
+    public function test() {
+        return 'ok';
+    }
     private function renderBottomBar($datas) {
         $this->includeFile('bottomBar', $datas);
     }

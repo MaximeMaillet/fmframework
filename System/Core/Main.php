@@ -89,7 +89,7 @@ class Main
      * Method which grab all patch for each directory of framework
      */
     private function loadPath() {
-        $this->_main_url = $_SERVER['SERVER_NAME'];
+        $this->_main_url = $_SERVER['REQUEST_SCHEME'].'://'.$_SERVER['SERVER_NAME'];
         $this->_system_path = INDEX_DIRECTORY.DIRECTORY_SEPARATOR.'System'.DIRECTORY_SEPARATOR;
         $this->_application_path = INDEX_DIRECTORY.DIRECTORY_SEPARATOR.'Application'.DIRECTORY_SEPARATOR;
         $this->_configuration_path = INDEX_DIRECTORY.DIRECTORY_SEPARATOR.'configuration'.DIRECTORY_SEPARATOR;
@@ -118,9 +118,15 @@ class Main
         $this->_instances['modules'] = array();
         foreach(scandir(Main::getInstance()->getSystemPath().'Modules') as $filename) {
             if($filename != '.' && $filename != '..') {
-                $class_name = '\System\Modules\\'.$filename.'\Main';
-                $this->_instances[$filename] = new $class_name();
-                $this->_instances[$filename]->launch();
+
+                if(array_key_exists($filename, $this->configuration->modules))
+                {
+                    if($this->configuration->modules[$filename]['active']) {
+                        $class_name = '\System\Modules\\'.$filename.'\Main';
+                        $this->_instances[$filename] = new $class_name();
+                        $this->_instances[$filename]->launch();
+                    }
+                }
             }
         }
 

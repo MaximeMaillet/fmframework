@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Title of the document</title>
+    <title>Panel admin</title>
     <link rel="stylesheet" href="<?php echo $maincss; ?>" />
 </head>
 

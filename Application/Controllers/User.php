@@ -2,10 +2,12 @@
 
 namespace Application\Controllers;
 use System\Core\Controller;
+use System\Core\Debug;
 
 class User extends Controller
 {
     public function __construct() {
+        Debug::addLog("coucou");
         parent::__construct();
     }
 

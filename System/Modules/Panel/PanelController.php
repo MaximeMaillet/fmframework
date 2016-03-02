@@ -19,7 +19,10 @@ class PanelController
     }
 
     public function main() {
-        $datas = $this->_model->getDatas();
+        $datas = array(
+            'instances' => $this->_model->getInstanciations(),
+            'logs' => $this->_model->getLogs()
+        );
         $this->_view->render($datas);
     }
 }

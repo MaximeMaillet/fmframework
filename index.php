@@ -15,9 +15,6 @@ function __autoload($class_name) {
 
 try {
     $_instance = \System\Core\Main::getInstance();
-
-    if($_instance->isModDebug())
-        \System\Core\Debug::show();
 }
 catch(Exception $e) {
     echo $e;

@@ -36,25 +36,14 @@ class Debug
         $backtrace = debug_backtrace();
         $datetime = '['.date("d/m/Y H:i:s").']';
 
-        self::$_log[] = $datetime.' (File:'.$backtrace[0]['file'].') ; (Line:'.$backtrace[0]['line'].') :: '.$text;
+        self::$_log[] = $datetime.' ; (File:'.$backtrace[0]['file'].') ; (Line:'.$backtrace[0]['line'].') :: '.$text;
     }
 
-    public static function show() {
-        echo'<p>';
-        foreach(self::$_instanciations as $Instance) {
-            if(is_array($Instance))
-                echo 'Parent('.$Instance['parent'].') => Child('.$Instance['child'].')<br>';
-            else
-                echo $Instance.'<br>';
+    public static function getInstanciations() {
+        return self::$_instanciations;
+    }
 
-        }
-        echo'</p>';
-
-        if(isset(self::$_log) && !empty(self::$_log)) {
-            echo '<h1>Logs</h1>';
-            foreach (self::$_log as $line) {
-                echo $line.'<br>';
-            }
-        }
+    public static function getLogs() {
+        return self::$_log;
     }
 }
