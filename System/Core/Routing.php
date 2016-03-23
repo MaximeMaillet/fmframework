@@ -23,6 +23,10 @@ class Routing
         if($mainInstance->isModDebug())
             Debug::addInstanciation(__CLASS__);
 
+        echo'<pre>';
+        print_r($_SERVER);
+        echo'</pre>';
+
         $arrayURL = explode('/', substr($_SERVER['REQUEST_URI'], 11));
 
         if($mainInstance->configuration->main['useVersion'])
